@@ -6,3 +6,5 @@ unzip /tmp/frontend.zip
 ### some file is to be added
 systemctl restart nginx
 systemctl enable nginx
+
+
