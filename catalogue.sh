@@ -15,13 +15,13 @@ echo -e "\e[36m>>>>>>>>>>>>>>install nodejs dependencies<<<<<<<<<<<<<\e[0n"
 cd /app
 npm install
 echo -e "\e[36m>>>>>>>>>>>>>>>copy catalogue systemD file<<<<<<<<<<<<<<<<<\e[0n"
-cp home/centos/roboshop-shell catalogue.service /etc/systemd/system/catalogue.service
+cp home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
 echo -e "\e[36m>>>>>>>>>>>>>>start catalogue service<<<<<<<<<<<<<\e[0n"
 systemctl daemon-reload
 systemctl enable catalogue
 systemctl start catalogue
 echo -e "\e[36m>>>>>>>>>>>>>>>>>copy mongodb repo<<<<<<<<<<<<<<<<<\e[0n"
-cp home/centos/roboshop-shell mongo.repo /etc/yum.repos.d/mongo.repo
+cp home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
 echo -e "\e[36m>>>>>>>>>>>>>install mongodb client<<<<<<<<<<<<<\e[0n"
 yum install mongodb-org-shell -
 echo -e "\e[36m>>>>>>>>>>>>>>>>configuring nodejs repos<<<<<<<<<<<<<<<\e[0n"
