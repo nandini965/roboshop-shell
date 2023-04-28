@@ -7,4 +7,4 @@ echo -e "\e[36m>>>>>>>>> update redis listen address <<<<<<<<<\e[0n"
 sed -i -e 's|127.0.0.1|0.0.0.0|' /etc/redis.conf /etc/redis/redis.conf
 echo -e "\e[36m>>>>>>>>>>>>>> start redis service<<<<<<<<<<<\e[0n"
 systemctl enable redis
-systemctl start redis
+systemctl restart redis
