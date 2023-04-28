@@ -22,7 +22,7 @@ systemctl enable catalogue
 systemctl start catalogue
 echo -e "\e[36m>>>>>>>>>>>>>>>>>copy mongodb repo<<<<<<<<<<<<<<<<<\e[0n"
 cp home/centos/roboshop-shell mongo.repo /etc/yum.repos.d/mongo.repo
-echo -e "\e[36m>>>>>>>>>>>>>istall mongodb client<<<<<<<<<<<<<\e[0n"
+echo -e "\e[36m>>>>>>>>>>>>>install mongodb client<<<<<<<<<<<<<\e[0n"
 yum install mongodb-org-shell -
 echo -e "\e[36m>>>>>>>>>>>>>>>>configuring nodejs repos<<<<<<<<<<<<<<<\e[0n"
 mongo --host mongodb-dev.rdevopsb72.store </app/schema/catalogue.js
