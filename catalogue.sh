@@ -9,7 +9,7 @@ mkdir /app
 echo -e "\e[36m>>>>>>>>>>>>> download app content <<<<<<<<<<<<<<\e[0m"
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
 cd /app
-echo -e "\e[36m>>>>>>>>>>>>>>unzip app content<<<<<<<<<<<<<<<<<<\e[0n"
+echo -e "\e[36m>>>>>>>>>>>>>>unzip app content<<<<<<<<<<<<<<<<<<\e[0m"
 unzip /tmp/catalogue.zip
 echo -e "\e[36m>>>>>>>>>>>>>> install nodejs dependencies <<<<<<<<<<<<<\e[0m"
 cd /app
@@ -24,7 +24,7 @@ echo -e "\e[36m>>>>>>>>>>>>>>>>> copy mongodb repo <<<<<<<<<<<<<<<<<\e[0m"
 cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
 echo -e "\e[36m>>>>>>>>>>>>> install mongodb client <<<<<<<<<<<<<\e[0m"
 yum install mongodb-org-shell -y
-echo -e "\e[36m>>>>>>>>>>>>>>>> load schema <<<<<<<<<<<<<<<\e[0m"
+echo -e "\e[36m>>>>>>>>>>>>>>>> load schema <<<<<<<<<<<<<<\e[0m"
 mongo --host mongodb-dev.rdevopsb72.store </app/schema/catalogue.js
 
 
