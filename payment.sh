@@ -17,4 +17,4 @@ cp /home/centos/roboshop-shell/payment.service /etc/systemd/system/payment.servi
 echo -e "\e[36m>>>>>>>>>>>>> start payment <<<<<<<<<<<<<<\e[0m"
 systemctl daemon-reload
 systemctl enable payment
-systemctl start payment
+systemctl restart payment
