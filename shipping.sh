@@ -13,7 +13,6 @@ unzip /tmp/shipping.zip
 cd /app
 mvn clean package
 echo -e "\e[36m>>>>>>>>>>>>> move shipping content <<<<<<<<<<<<<<\e[0m"
-
 mv /target/shipping-1.0.jar shipping.jar
 echo -e "\e[36m>>>>>>>>>>>>> copy systemd <<<<<<<<<<<<<<\e[0m"
 cp /home/centos/roboshop-shell/shipping.service /etc/systemd/system/shipping.service
