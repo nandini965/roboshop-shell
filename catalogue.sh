@@ -2,7 +2,7 @@ echo -e "\e[36m>>>>>>>>> configuring nodejs.repos <<<<<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 echo -e "\e[36m>>>>>>>>>> install nodejs <<<<<<<<<\e[0m"
 yum install nodejs -y
-echo -e"\e[36m>>>>>>>>>>> application user <<<<<<<<<<<<\e[0m"
+echo -e"\e[36m>>>>>>>>>>> add application user <<<<<<<<<<<<\e[0m"
 useradd roboshop
 echo -e "\e[36m>>>>>>>>>>>>> create application directory <<<<<<<<<<<<\e[0m"
 mkdir /app
@@ -19,7 +19,7 @@ cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.s
 echo -e "\e[36m>>>>>>>>>>>>>> start catalogue service <<<<<<<<<<<<<\e[0m"
 systemctl daemon-reload
 systemctl enable catalogue
-systemctl restart catalogue
+systemctl start catalogue
 echo -e "\e[36m>>>>>>>>>>>>>>>>> copy mongodb repo <<<<<<<<<<<<<<<<<\e[0m"
 cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
 echo -e "\e[36m>>>>>>>>>>>>> install mongodb client <<<<<<<<<<<<<\e[0m"
