@@ -24,4 +24,4 @@ mysql -h mysql-dev.rdevopsb72.store -uroot -pRoboShop@1 < /app/schema/shipping.s
 echo -e "\e[36m>>>>>>>>>> start shipping service <<<<<<<<<<<<<<\e[0m"
 systemctl daemon-reload
 systemctl enable shipping
-systemctl start shipping
+systemctl restart shipping
