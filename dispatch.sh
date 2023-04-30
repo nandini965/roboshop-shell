@@ -1,7 +1,7 @@
 echo -e "\e[36m>>>>>>>>>>>>> install golang -y <<<<<<<<<<<<<<\e[0m"
 yum install golang -y
 echo -e "\e[36m>>>>>>>>>>>>> add user application <<<<<<<<<<<<<<\e[0m"
-useradd roboshop
+useradd ${app_user}
 echo -e "\e[36m>>>>>>>>>>>>> create app directory <<<<<<<<<<<<<<\e[0m"
 mkdir /app
 echo -e "\e[36m>>>>>>>>>>>>> download app content <<<<<<<<<<<<<<\e[0m"

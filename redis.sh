@@ -1,3 +1,4 @@
+source common.sh
 echo -e "\e[36m>>>>>>>>>>> install redis repos<<<<<<<<<<<<<\e[0n"
 yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
 echo -e "\e[36m>>>>>>>>>> install redis <<<<<<<<<<<\e[0n"
