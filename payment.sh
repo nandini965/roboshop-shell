@@ -1,3 +1,7 @@
+
+script_path=$(dirname $0)
+source ${script_path}/common.sh
+
 source common.sh
 echo -e "\e[36m>>>>>>>>>>>>> install python3 <<<<<<<<<<<<<<\e[0m"
 yum install python36 gcc python3-devel -y
@@ -14,7 +18,7 @@ cd /app
 echo -e "\e[36m>>>>>>>>>>>>> install app requirements <<<<<<<<<<<<<<\e[0m"
 pip3.6 install -r requirements.txt
 echo -e "\e[36m>>>>>>>>>>>>> copy systemd <<<<<<<<<<<<<<\e[0m"
-cp script_path/payment.service /etc/systemd/system/payment.service
+cp $script_path/payment.service /etc/systemd/system/payment.service
 echo -e "\e[36m>>>>>>>>>>>>> start payment <<<<<<<<<<<<<<\e[0m"
 systemctl daemon-reload
 systemctl enable payment

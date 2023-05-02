@@ -1,3 +1,6 @@
+
+script_path=$(dirname $0)
+source ${script_path}/common.sh
 source common.sh
 echo -e "\e[36m>>>>>>>>>>> install redis repos<<<<<<<<<<<<<\e[0n"
 yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
