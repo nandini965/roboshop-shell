@@ -19,7 +19,7 @@ cd /app
 echo -e "\e[36m<<<<<<<<<<<<<<<<< install nodejs dependencies <<<<<<<<<<<<<\e[0m"
 npm install
 echo -e "\e[36m<<<<<<<<<<<<<<<<< create application directory <<<<<<<<<<<<<\e[0m"
-cp $source_path/user.service /etc/systemd/system/user.service
+cp $script_path/user.service /etc/systemd/system/user.service
 echo -e "\e[36m<<<<<<<<<<<<<<<<< start user service <<<<<<<<<<<<<\e[0m"
 systemctl daemon-reload
 systemctl enable user
