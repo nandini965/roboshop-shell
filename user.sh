@@ -1,8 +1,7 @@
 
 script_path=$(dirname $0)
 source ${script_path}/common.sh
-echo $source_path
-exit
+
 echo -e "\e[36m<<<<<<<<<<<<<<<<< configuring nodejs <<<<<<<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 echo -e "\e[36m<<<<<<<<<<<<<<<<< install nodejs <<<<<<<<<<<<<\e[0m"
@@ -20,7 +19,7 @@ cd /app
 echo -e "\e[36m<<<<<<<<<<<<<<<<< install nodejs dependencies <<<<<<<<<<<<<\e[0m"
 npm install
 echo -e "\e[36m<<<<<<<<<<<<<<<<< create application directory <<<<<<<<<<<<<\e[0m"
-cp home/centos/roboshop-shell/user.service /etc/systemd/system/user.service
+cp  $source_path/user.service /etc/systemd/system/user.service
 echo -e "\e[36m<<<<<<<<<<<<<<<<< start user service <<<<<<<<<<<<<\e[0m"
 systemctl daemon-reload
 systemctl enable user
