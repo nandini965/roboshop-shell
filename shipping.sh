@@ -1,3 +1,5 @@
+script=$(realpath "$0")
+script_path=$(dirname $0)
 source common.sh
 echo -e "\e[36m>>>>>>>>>>>>> install maven <<<<<<<<<<<<<<\e[0m"
 yum install maven -y
@@ -16,7 +18,7 @@ mvn clean package
 echo -e "\e[36m>>>>>>>>>>>>> move shipping content <<<<<<<<<<<<<<\e[0m"
 mv target/shipping-1.0.jar shipping.jar
 echo -e "\e[36m>>>>>>>>>>>>> copy systemd <<<<<<<<<<<<<<\e[0m"
-cp script_path/shipping.service /etc/systemd/system/shipping.service
+cp $script_path/shipping.service /etc/systemd/system/shipping.service
 echo -e "\e[36m>>>>>>>>>>>>> download my sql client <<<<<<<<<<<<<<\e[0m"
 yum install mysql -y
 echo -e "\e[36m>>>>>>>>>> load schema <<<<<<<<<<<<<<\e[0m"

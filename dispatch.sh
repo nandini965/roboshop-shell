@@ -1,6 +1,6 @@
-
+script=$(realpath "$0")
 script_path=$(dirname $0)
-source ${script_path}/common.sh
+source common.sh
 echo -e "\e[36m>>>>>>>>>>>>> install golang -y <<<<<<<<<<<<<<\e[0m"
 yum install golang -y
 echo -e "\e[36m>>>>>>>>>>>>> add user application <<<<<<<<<<<<<<\e[0m"

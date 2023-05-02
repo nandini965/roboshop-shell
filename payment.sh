@@ -1,6 +1,5 @@
-
+script=$(realpath "$0")
 script_path=$(dirname $0)
-source ${script_path}/common.sh
 
 source common.sh
 echo -e "\e[36m>>>>>>>>>>>>> install python3 <<<<<<<<<<<<<<\e[0m"
