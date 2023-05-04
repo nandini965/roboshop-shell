@@ -1,6 +1,7 @@
 script=$(realpath "$0")
 script_path=$(dirname $0)
 source common.sh
+mysql_root_password
 echo -e "\e[36m>>>>>>>>>>>>> install maven <<<<<<<<<<<<<<\e[0m"
 yum install maven -y
 echo -e "\e[36m>>>>>>>>>>>>> add application user <<<<<<<<<<<<<<\e[0m"
@@ -22,7 +23,7 @@ cp $script_path/shipping.service /etc/systemd/system/shipping.service
 echo -e "\e[36m>>>>>>>>>>>>> download my sql client <<<<<<<<<<<<<<\e[0m"
 yum install mysql -y
 echo -e "\e[36m>>>>>>>>>> load schema <<<<<<<<<<<<<<\e[0m"
-mysql -h mysql-dev.rdevopsb72.store -uroot -pRoboShop@1 < /app/schema/shipping.sql
+mysql -h mysql-dev.rdevopsb72.store {mysql_root_password} < /app/schema/shipping.sql
 echo -e "\e[36m>>>>>>>>>> start shipping service <<<<<<<<<<<<<<\e[0m"
 systemctl daemon-reload
 systemctl enable shipping
