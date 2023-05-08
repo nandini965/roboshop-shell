@@ -1,6 +1,6 @@
 script=$(realpath "$0")
 script_path=$(dirname $"script")
-source common.sh
+source ${script_path} common.sh
 
 echo -e "\e[36m<<<<<<<<<<<<<<<<< configuring nodejs <<<<<<<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
