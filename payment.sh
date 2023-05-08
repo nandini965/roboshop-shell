@@ -1,5 +1,5 @@
 script=$(realpath "$0")
-script_path=$(dirname $0)
+script_path=$(dirname $"script")
 source common.sh
 rabbitmq_appuser_password=$1
 echo -e "\e[36m>>>>>>>>>>>>> install python3 <<<<<<<<<<<<<<\e[0m"
