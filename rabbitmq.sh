@@ -1,6 +1,6 @@
 script=$(realpath "$0")
 script_path=$(dirname $"script")
-source ${script_path} common.sh
+source ${script_path}/ common.sh
 rabbitmq_appuser_password=$1
 echo -e "\e[36m>>>>>>>>>>>>> download erlang repo <<<<<<<<<<<<<<\e[0m"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
