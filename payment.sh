@@ -1,7 +1,6 @@
 script_path=$(dirname $0)
+script=$(realpath "$0")
 source ${script_path}/common.sh
-echo $app_user
-exit
 echo -e "\e[36m>>>>>>>>>>>>> install python3 <<<<<<<<<<<<<<\e[0m"
 yum install python36 gcc python3-devel -y
 echo -e "\e[36m>>>>>>>>>>>>add application user <<<<<<<<<<<<<<\e[0m"
