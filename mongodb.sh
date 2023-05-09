@@ -1,4 +1,6 @@
-source common.sh
+script_path=$(dirname $0)
+source ${script_path}/common.sh
+
 yum install mongodb-org -y
 cp mongo.repo /etc/yum.repos.d/mongo.repo
 systemctl enable mongod
