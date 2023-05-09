@@ -1,4 +1,5 @@
 script_path=$(dirname $0)
+script=$(realpath "$0")
 source ${script_path}/common.sh
 
 echo -e "\e[36m>>>>>>>>>>>>> download erlang repo <<<<<<<<<<<<<<\e[0m"

@@ -1,4 +1,5 @@
 script_path=$(dirname $0)
+script=$(realpath "$0")
 source ${script_path}/common.sh
 
 yum install nginx -y
