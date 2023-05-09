@@ -2,7 +2,7 @@
 echo -e "\e[36m>>>>>>>>>>>>> install python3 <<<<<<<<<<<<<<\e[0m"
 yum install python36 gcc python3-devel -y
 echo -e "\e[36m>>>>>>>>>>>>add application user <<<<<<<<<<<<<<\e[0m"
-useradd ${app_user}
+useradd roboshop
 echo -e "\e[36m>>>>>>>>>>>>> create app directory <<<<<<<<<<<<<<\e[0m"
 mkdir /app
 echo -e "\e[36m>>>>>>>>>>>>> download app content <<<<<<<<<<<<<<\e[0m"

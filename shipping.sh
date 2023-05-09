@@ -2,7 +2,7 @@
 echo -e "\e[36m>>>>>>>>>>>>> install maven <<<<<<<<<<<<<<\e[0m"
 yum install maven -y
 echo -e "\e[36m>>>>>>>>>>>>> add application user <<<<<<<<<<<<<<\e[0m"
-useradd ${app_user}
+useradd roboshop
 echo -e "\e[36m>>>>>>>>>>>>> create app directory <<<<<<<<<<<<<<\e[0m"
 rm -rf /app
 mkdir /app
