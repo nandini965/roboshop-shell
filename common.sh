@@ -27,4 +27,5 @@ echo -e "\e[36m>>>>>>>>>>>>>> start cart service<<<<<<<<<<<<<<<<<<\e[0m"
 systemctl daemon-reload
 systemctl enable ${component}
 systemctl restart ${component}
+
 }
