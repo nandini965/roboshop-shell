@@ -6,6 +6,14 @@ script_path=$(dirname "$script")
 print_head(){
 echo -e "\e[36m>>>>>>>>>>>>> $* <<<<<<<<<<<<<<<<<<\e[0m"
 }
+ schema_setup() {
+ echo -e "\e[36m<<<<<<<<<<<<<<<<< copy mongodb repo <<<<<<<<<<<<<\e[0m"
+ cp $script_path/mongo.repo /etc/yum.repos.d/mongo.repo
+ echo -e "\e[36m<<<<<<<<<<<<<<<<< install mongodb client <<<<<<<<<<<<<\e[0m"
+ yum install mongodb-org-shell -y
+ echo -e "\e[36m>>>>>>>>>>>>>>>> load schema <<<<<<<<<<<\e[0m"
+ mongo --host mongodb-dev.rdevopsb72.store </app/schema/${catalogue}.js
+ }
  func_nodejs() {
 print_head "configuring nodejs"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
@@ -36,4 +44,6 @@ print_head "start cart service"
 systemctl daemon-reload
 systemctl enable ${component}
 systemctl restart ${component}
- }
+
+schema_setup
+}
