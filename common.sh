@@ -22,7 +22,7 @@ cd /app
 echo -e "\e[36m>>>>>>>>>>>>>>install nodejs dependencies<<<<<<<<<<<<<<<<<<\e[0m"
 npm install
 echo -e "\e[36m>>>>>>>>>>>>>>copy cart client<<<<<<<<<<<<<<<<<<\e[0m"
-cp $script_path/${component}.service /etc/systemd/system/${component}.service
+cp ${script_path}/${component}.service /etc/systemd/system/${component}.service
 echo -e "\e[36m>>>>>>>>>>>>>> start cart service<<<<<<<<<<<<<<<<<<\e[0m"
 systemctl daemon-reload
 systemctl enable ${component}
