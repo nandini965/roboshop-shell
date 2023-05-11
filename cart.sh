@@ -4,5 +4,5 @@ source ${script_path}/common.sh
 component=cart
 
 func_nodejs
-schema_setup=mongo
+
 
