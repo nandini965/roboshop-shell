@@ -15,7 +15,7 @@ yum install mongodb-org-shell -y
 func_print_head "load schema"
 mongo --host mongodb-dev.rdevopsb72.store </app/schema/${component}.js
 fi
-  if [ "$schema_setup" == "mysql" ]; then
+  if [ "{$schema_setup}" == "mysql" ]; then
    func_print_head "install my sql client "
     yum install mysql -y
    func_print_head "load schema"
@@ -38,7 +38,7 @@ fi
  func_systemd_setup() {
  func_print_head "copy systemd"
  cp ${script_path}/${component}.service /etc/systemd/system/${component}.service
-  systemctl daemon-reload
+systemctl daemon-reload
  systemctl enable ${component}
  systemctl restart ${component}
 
