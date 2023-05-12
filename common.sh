@@ -10,13 +10,15 @@ echo -e "\e[36m>>>>>>>>>>>>> $* <<<<<<<<<<<<<<<<<<\e[0m"
 if [ "$schema_setup" == "mongo" ]; then
 func_print_head "${component} repo"
 cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
-func_print_head "${install component} client"
+func_print_head "${component} client"
 yum install mongodb-org-shell -y
 func_print_head "load schema"
 mongo --host mongodb-dev.rdevopsb72.store </app/schema/${component}.js
 fi
  }
  if [ "$schema_setup" == "mysql" ]; then
+   func_print_head "install my sql client "
+    yum install mysql -y
    func_print_head "load schema"
    mysql -h mysql-dev.rdevopsb72.store -p${mysql_root_password} < /app/schema/${component}.sql
    fi
@@ -37,9 +39,7 @@ fi
  func_systemd_setup() {
  func_print_head "copy systemd"
  cp ${script_path}/${component}.service /etc/systemd/system/${component}.service
- func_print_head "install my sql client "
- yum install mysql -y
- systemctl daemon-reload
+  systemctl daemon-reload
  systemctl enable ${component}
  systemctl restart ${component}
     }
