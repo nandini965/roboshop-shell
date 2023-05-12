@@ -14,7 +14,7 @@ else
 echo -e "\e[31mFAILURE\e[0m"
 exit 1
 fi
- }
+
  func_schema_setup() {
 if [ "$schema_setup" == "mongo" ]; then
 func_print_head "copy mongodb repo"
