@@ -15,7 +15,7 @@ yum install mongodb-org-shell -y
 func_print_head "load schema"
 mongo --host mongodb-dev.rdevopsb72.store </app/schema/${component}.js
 fi
-  if [ "{$schema_setup}" == "mysql" ]; then
+  if [ "$schema_setup" == "mysql" ]; then
    func_print_head " install my sql client "
     yum install mysql -y
    func_print_head " load schema "
