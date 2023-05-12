@@ -6,7 +6,7 @@ script_path=$(dirname "$script")
 func_print_head() {
 echo -e "\e[36m>>>>>>>>>>>>> $* <<<<<<<<<<<<<<<<<<\e[0m"
 }
- func_stat_check() {
+ func_status_check() {
 if [ $1 -eq 0 ]; then
 echo -e "\e[32mSUCCESS\e[0m"
 else
@@ -34,7 +34,7 @@ fi
        func_Stat_check $?
 
        func_print_head "load schema"
-       mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -p${mysql_root_password} < /app/schema/shipping.sql
+       mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -p${mysql_root_password} < /app/schema/${component}.sql
        func_Stat_check $?
       fi
       }
