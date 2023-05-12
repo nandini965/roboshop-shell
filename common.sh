@@ -32,6 +32,10 @@ echo -e "\e[32mSUCCESS\e[0m"
        func_print_head " install mysql client "
        yum install mysql -y
        func_Stat_check $?
+
+       func_print_head "load schema"
+       mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -p${mysql_root_password} < /app/schema/${catalogue}.sql
+       func_Stat_check $?
       fi
       }
  func_app_prereq() {
@@ -105,5 +109,4 @@ mv target/${component}-1.0.jar ${component}.jar
 func_schema_setup
 func_systemd_setup
 
-}
 }
