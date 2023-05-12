@@ -3,49 +3,70 @@ script=$(realpath "$0")
 script_path=$(dirname "$script")
 
 
-print_head(){
+func_print_head(){
 echo -e "\e[36m>>>>>>>>>>>>> $* <<<<<<<<<<<<<<<<<<\e[0m"
 }
- schema_setup() {
+ func_schema_setup() {
 if [ "$schema_setup" == "mongo" ]; then
-print_head "copy mongodb repo"
+func_print_head "${component} repo"
 cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
-print_head "install mongodb client"
+func_print_head "${install component} client"
 yum install mongodb-org-shell -y
-print_head "load schema"
+func_print_head "load schema"
 mongo --host mongodb-dev.rdevopsb72.store </app/schema/${component}.js
 fi
  }
+ if [ "$schema_setup" == "mysql" ]; then
+   func_print_head "load schema"
+   mysql -h mysql-dev.rdevopsb72.store -p${mysql_root_password} < /app/schema/${component}.sql
+
+ func_app_prereq() {
+   func_print_head "add application user"
+   useradd ${app_user}
+   func_print_head "create application directory"
+   rm -rf /app
+   mkdir /app
+ func_print_head "download application content"
+ curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
+ func_print_head "unzip app content"
+ cd /app
+ unzip /tmp/${component}.zip
+ }
+ func_systemd_setup() {
+ func_print_head "copy systemd"
+ cp ${script_path}/${component}.service /etc/systemd/system/${component}.service
+ func_print_head "install my sql client "
+ yum install mysql -y
+ func_print_head "load schema "
+ mysql -h mysql-dev.rdevopsb72.store -p${mysql_root_password} < /app/schema/${component}.sql
+ func_print_head "start ${component} service"
+ systemctl daemon-reload
+ systemctl enable ${component}
+ systemctl restart ${component}
+    }
+
  func_nodejs() {
-print_head "configuring nodejs"
+func_print_head "configuring nodejs"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
-print_head "install nodejs"
+func_print_head "install nodejs"
 yum install nodejs -y
-
-print_head "add application user"
-useradd ${app_user}
-
-print_head "create application directory"
-mkdir /app
-
-print_head "download app content"
-curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip cd /app
-
-print_head "unzip app content"
-unzip /tmp/${component}.zip
-cd /app
-
-print_head "install nodejs dependencies"
+func_app_prereq
+func_print_head "install nodejs dependencies"
 npm install
+func_schema_setup
+func_systemd_setup
+}
+func_java() {
 
-print_head "copy cart client"
-cp $script_path/${component}.service /etc/systemd/system/${component}.service
+func_print_head "install maven"
+yum install maven -y
+func_app_prereq
 
-print_head "start cart service"
-systemctl daemon-reload
-systemctl enable ${component}
-systemctl restart ${component}
-
-schema_setup
+cd /app
+mvn clean package
+func_print_head "move component content"
+mv target/${component}-1.0.jar ${component}.jar
+func_schema_setup
+func_systemd_setup
 }
