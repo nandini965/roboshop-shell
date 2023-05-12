@@ -28,7 +28,7 @@ echo -e "\e[32mSUCCESS\e[0m"
      mongo --host mongodb_dev.rdevopsb72.store </app/schema/${component}.js
      func_Stat_check $?
      fi
-     if [ "${schema_setup}" == "mysql" ]; then
+     if [ "$schema_setup" == "mysql" ]; then
        func_print_head " install mysql client "
        yum install mysql -y
        func_Stat_check $?
