@@ -20,13 +20,17 @@ func_print_head mongodb repos
 cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 func-Stat_check $?
 
+
 func_print_head "${component} client"
-yum install mongodb-org-shell -
+yum install mongodb-org-shell -y
 func-Stat_check $?
+
+
 
 func_print_head "load schema"
 mongo --host mongodb-dev.rdevopsb72.store </app/schema/${component}.js
 func-Stat_check $?
+
 fi
   if [ "$schema_setup" == "mysql" ]; then
    func_print_head " install my sql client "
