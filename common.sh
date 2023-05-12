@@ -19,6 +19,7 @@ fi
  if [ "$schema_setup" == "mysql" ]; then
    func_print_head "load schema"
    mysql -h mysql-dev.rdevopsb72.store -p${mysql_root_password} < /app/schema/${component}.sql
+   fi
    }
 
  func_app_prereq() {
@@ -55,6 +56,7 @@ npm install
 func_schema_setup
 func_systemd_setup
 }
+
 func_java() {
 
 func_print_head "install maven"
