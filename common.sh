@@ -65,7 +65,7 @@ yum install maven -y
 if [$? -eq 0]; then
 echo -e "\e [32mSUCCESS\e[0m"
 else
-echo -e "\e [31mFAILURE\e[om"
+echo -e "\e [31mFAILURE\e[0m"
 fi
 func_app_prereq
 func_print_head "download maven dependencies"
@@ -73,7 +73,7 @@ mvn clean package
 if [$? -eq 0]; then
 echo -e "\e [32mSUCCESS\e[0m"
 else
-echo -e "\e [31mFAILURE\e[om"
+echo -e "\e [31mFAILURE\e[0m"
 fi
 
 mv target/${component}-1.0.jar ${component}.jar
