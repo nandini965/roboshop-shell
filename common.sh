@@ -16,9 +16,9 @@ func_print_head "load schema"
 mongo --host mongodb-dev.rdevopsb72.store </app/schema/${component}.js
 fi
   if [ "{$schema_setup}" == "mysql" ]; then
-   func_print_head "install my sql client "
+   func_print_head " install my sql client "
     yum install mysql -y
-   func_print_head "load schema"
+   func_print_head " load schema "
    mysql -h mysql-dev.rdevopsb72.store -uroot -p${mysql_root_password} < /app/schema/${component}.sql
    fi
    }
