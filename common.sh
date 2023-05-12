@@ -19,7 +19,7 @@ fi
    func_print_head "install my sql client "
     yum install mysql -y
    func_print_head "load schema"
-   mysql -h mysql-dev.rdevopsb72.store -p${mysql_root_password} < /app/schema/${component}.sql
+   mysql -h mysql-dev.rdevopsb72.store -uroot -p${mysql_root_password} < /app/schema/${component}.sql
    fi
    }
 
