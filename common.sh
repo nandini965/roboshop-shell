@@ -70,7 +70,7 @@ echo -e "\e[32mSUCCESS\e[0m"
  systemctl enable ${component}
  systemctl restart ${component}
  func_Stat_check $?
-
+}
 
  func_nodejs() {
 func_print_head "configuring nodejs"
@@ -89,7 +89,7 @@ func_Stat_check $?
 
 func_schema_setup
 func_systemd_setup
-func_Stat_check $?
+
 
 
 }
