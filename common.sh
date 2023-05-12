@@ -6,7 +6,8 @@ script_path=$(dirname "$script")
 func_print_head() {
 echo -e "\e[36m>>>>>>>>>>>>> $* <<<<<<<<<<<<<<<<<<\e[0m"
 }
- func_status_check() {
+
+func_stat_check() {
 if [ $1 -eq 0 ]; then
 echo -e "\e[32mSUCCESS\e[0m"
 else
@@ -15,29 +16,29 @@ exit 1
 fi
  }
  func_schema_setup() {
-  if [ "$schema_setup" == "mongo" ]; then
-    func_print_head "copy mongodb repo"
-    cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
-    func_Stat_check $?
+if [ "$schema_setup" == "mongo" ]; then
+func_print_head "copy mongodb repo"
+cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
+func_Stat_check $?
 
-    func_print_head "install mongodb client"
-    yum install mongodb-org-shell -y
-    func_Stat_check $?
+func_print_head "install mongodb client"
+ yum install mongodb-org-shell -y
+ func_Stat_check $?
 
-     func_print_head "load schema"
-     mongo --host mongodb_dev.rdevopsb72.store </app/schema/${component}.js
-     func_Stat_check $?
-     fi
-     if [ "$schema_setup" == "mysql" ]; then
-       func_print_head " install mysql client "
-       yum install mysql -y
-       func_Stat_check $?
+func_print_head "load schema"
+ mongo --host mongodb_dev.rdevopsb72.store </app/schema/${component}.js
+func_Stat_check $?
+fi
+ if [ "$schema_setup" == "mysql" ]; then
+ func_print_head " install mysql client "
+yum install mysql -y
+func_Stat_check $?
 
-       func_print_head "load schema"
-       mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -p${mysql_root_password} < /app/schema/${component}.sql
-       func_Stat_check $?
-      fi
-      }
+ func_print_head "load schema"
+mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -p${mysql_root_password} < /app/schema/${component}.sql
+func_Stat_check $?
+ fi
+ }
  func_app_prereq() {
  func_print_head "add application user"
  useradd ${app_user}
