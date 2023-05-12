@@ -15,8 +15,7 @@ yum install mongodb-org-shell -y
 func_print_head "load schema"
 mongo --host mongodb-dev.rdevopsb72.store </app/schema/${component}.js
 fi
- }
- if [ "$schema_setup" == "mysql" ]; then
+  if [ "$schema_setup" == "mysql" ]; then
    func_print_head "install my sql client "
     yum install mysql -y
    func_print_head "load schema"
@@ -42,7 +41,8 @@ fi
   systemctl daemon-reload
  systemctl enable ${component}
  systemctl restart ${component}
-    }
+
+ }
 
  func_nodejs() {
 func_print_head "configuring nodejs"
@@ -55,6 +55,8 @@ func_print_head "install nodejs dependencies"
 npm install
 func_schema_setup
 func_systemd_setup
+
+
 }
 
 func_java() {
