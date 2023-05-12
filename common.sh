@@ -6,7 +6,7 @@ script_path=$(dirname "$script")
 func_print_head() {
 echo -e "\e[36m>>>>>>>>>>>>> $* <<<<<<<<<<<<<<<<<<\e[0m"
 }
- func_status_check() {
+ func_stat_check() {
    if [$1 -eq 0]; then
    echo -e "\e [32mSUCCESS\e[0m"
    else
