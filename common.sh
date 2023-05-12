@@ -8,7 +8,7 @@ echo -e "\e[36m>>>>>>>>>>>>> $* <<<<<<<<<<<<<<<<<<\e[0m"
 }
  func_schema_setup() {
 if [ "$schema_setup" == "mongo" ]; then
-func_print_head "${component} repo"
+func_print_head mongodb repos
 cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 func_print_head "${component} client"
 yum install mongodb-org-shell -y
@@ -25,14 +25,14 @@ fi
    }
 
  func_app_prereq() {
-   func_print_head "add application user"
-   useradd ${app_user}
-   func_print_head "create application directory"
-   rm -rf /app
-   mkdir /app
+ func_print_head "add application user"
+ useradd ${app_user}
+ func_print_head "create application directory"
+ rm -rf /app
+ mkdir /app
  func_print_head "download application content"
  curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
- func_print_head "unzip app content"
+ func_print_head "unzip application content"
  cd /app
  unzip /tmp/${component}.zip
  }
