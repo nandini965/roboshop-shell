@@ -9,10 +9,10 @@ echo -e "\e[36m>>>>>>>>>>>>> $* <<<<<<<<<<<<<<<<<<\e[0m"
  func_stat_check() {
 if [ $1 -eq 0 ]; then
 echo -e "\e[32mSUCCESS\e[0m"
- else
- echo -e "\e[31mFAILURE\e[0m"
- exit 1
-  fi
+else
+echo -e "\e[31mFAILURE\e[0m"
+exit 1
+fi
  }
  func_schema_setup() {
   if [ "$schema_setup" == "mongo" ]; then
@@ -34,7 +34,7 @@ echo -e "\e[32mSUCCESS\e[0m"
        func_Stat_check $?
 
        func_print_head "load schema"
-       mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -p${mysql_root_password} < /app/schema/${component}.sql
+       mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -p${mysql_root_password} < /app/schema/shipping.sql
        func_Stat_check $?
       fi
       }
