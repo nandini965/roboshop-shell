@@ -36,9 +36,10 @@ fi
  unzip /tmp/${component}.zip
  }
  func_systemd_setup() {
- func_print_head "copy systemd"
+ func_print_head "setup systemd service"
  cp ${script_path}/${component}.service /etc/systemd/system/${component}.service
-systemctl daemon-reload
+ func_print_head "start ${component} service"
+ systemctl daemon-reload
  systemctl enable ${component}
  systemctl restart ${component}
 
@@ -55,8 +56,6 @@ func_print_head "install nodejs dependencies"
 npm install
 func_schema_setup
 func_systemd_setup
-
-
 }
 
 func_java() {
@@ -64,10 +63,8 @@ func_java() {
 func_print_head "install maven"
 yum install maven -y
 func_app_prereq
-
-cd /app
+func_print_head "download maven dependencies"
 mvn clean package
-func_print_head "move component content"
 mv target/${component}-1.0.jar ${component}.jar
 func_schema_setup
 func_systemd_setup
