@@ -14,8 +14,26 @@ echo -e "\e[32mSUCCESS\e[0m"
  exit 1
   fi
  }
- func_schema_setup()
+ func_schema_setup() {
+  if [ "$schema_setup" == "mongo" ]; then
+    func_print_head "copy mongodb repo"
+    cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
+    func_Stat_check $?
 
+    func_print_head "install mongodb client"
+    yum install mongodb-org-shell -y
+    func_Stat_check $?
+
+     func_print_head "load schema"
+     mongo --host mongodb_dev.rdevopsb72.store </app/schema/${component}.js
+     func_Stat_check $?
+     fi
+     if [ "$schema_setup" == "mysql" ]; then
+       func_print_head " install mysql client "
+       yum install mysql -y
+       func_Stat_check $?
+      fi
+      }
  func_app_prereq() {
  func_print_head "add application user"
  useradd ${app_user}
@@ -87,4 +105,5 @@ mv target/${component}-1.0.jar ${component}.jar
 func_schema_setup
 func_systemd_setup
 
+}
 }
