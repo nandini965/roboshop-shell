@@ -34,7 +34,7 @@ echo -e "\e[32mSUCCESS\e[0m"
        func_Stat_check $?
 
        func_print_head "load schema"
-       mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -p${mysql_root_password} < /app/schema/${catalogue}.sql
+       mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -p${mysql_root_password} < /app/schema/${component}.sql
        func_Stat_check $?
       fi
       }
