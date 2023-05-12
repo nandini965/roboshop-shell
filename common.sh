@@ -19,6 +19,7 @@ fi
  if [ "$schema_setup" == "mysql" ]; then
    func_print_head "load schema"
    mysql -h mysql-dev.rdevopsb72.store -p${mysql_root_password} < /app/schema/${component}.sql
+   }
 
  func_app_prereq() {
    func_print_head "add application user"
@@ -37,9 +38,6 @@ fi
  cp ${script_path}/${component}.service /etc/systemd/system/${component}.service
  func_print_head "install my sql client "
  yum install mysql -y
- func_print_head "load schema "
- mysql -h mysql-dev.rdevopsb72.store -p${mysql_root_password} < /app/schema/${component}.sql
- func_print_head "start ${component} service"
  systemctl daemon-reload
  systemctl enable ${component}
  systemctl restart ${component}
