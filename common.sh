@@ -161,6 +161,6 @@ func_erlang() {
 
   func_print_head "useradd"
   componentctl add_user ${app_user} ${rabbitmq_appuser_password} &>>$log_file
-  componentctl set_permissions -p / ${roboshop} ".*" ".*" ".*" &>>$log_file
+  componentctl set_permissions -p / ${app user} ".*" ".*" ".*" &>>$log_file
  func_stat_check $?
  }
