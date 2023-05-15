@@ -19,44 +19,44 @@ fi
  func_schema_setup() {
 if [ "$schema_setup" == "mongo" ]; then
 func_print_head "copy mongodb repo"
-cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo &>>/tmp/$log_file
+cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
 func_stat_check $?
 
 func_print_head "install mongodb client"
- yum install mongodb-org-shell - &>>/tmp/$log_file
+ yum install mongodb-org-shell - &>>$log_file
  func_stat_check $?
 
 func_print_head "load schema"
- mongo --host mongodb_dev.rdevopsb72.store </app/schema/${component}.js &>>/tmp/$log_file
+ mongo --host mongodb_dev.rdevopsb72.store </app/schema/${component}.js &>>$log_file
 func_stat_check $?
 fi
  if [ "$schema_setup" == "mysql" ]; then
  func_print_head " install mysql client "
-yum install mysql -y &>>/tmp/$log_file
-func_stat_check $? &>>/tmp/$log_file
+yum install mysql -y &>>$log_file
+func_stat_check $? &>>$log_file
 
  func_print_head "load schema"
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>/tmp/$log_file
+mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>$log_file
 func_stat_check $?
  fi
  }
  func_app_prereq() {
  func_print_head "add application user"
- useradd ${app_user} &>>/tmp/$log_file
+ useradd ${app_user} &>>$log_file
  func_stat_check $?
 
  func_print_head "create application directory"
- rm -rf /app &>>/tmp/$log_file
- mkdir /app &>>/tmp/$log_file
+ rm -rf /app &>>$log_file
+ mkdir /app &>>$log_file
  func_stat_check $?
 
  func_print_head "download application content"
- curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>/tmp/$log_file
+ curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>$log_file
  func_stat_check $?
 
  func_print_head "unzip application content"
- cd /app &>>/tmp/$log_file
- unzip /tmp/${component}.zip &>>/tmp/$log_file
+ cd /app &>>$log_file
+ unzip /tmp/${component}.zip &>>$log_file
  func_stat_check $?
 
  }
@@ -64,7 +64,7 @@ func_stat_check $?
 
  func_systemd_setup() {
  func_print_head "setup systemd service"
- cp ${script_path}/${component}.service /etc/systemd/system/${component}.service &>>/tmp/$log_file
+ cp ${script_path}/${component}.service /etc/systemd/system/${component}.service &>>$log_file
  func_stat_check $?
 
  func_print_head "start ${component} service"
@@ -76,17 +76,17 @@ func_stat_check $?
 
  func_nodejs() {
 func_print_head "configuring nodejs"
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>/tmp/$log_file
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$log_file
 func_stat_check $?
 
 func_print_head "install nodejs"
-yum install nodejs -y &>>/tmp/$log_file
+yum install nodejs -y &>>$log_file
 func_stat_check $?
 
 func_app_prereq
 
 func_print_head "install nodejs dependencies"
-npm install &>>/tmp/$log_file
+npm install &>>$log_file
 func_stat_check $?
 
 func_schema_setup
@@ -99,16 +99,15 @@ func_systemd_setup
 func_java() {
 
 func_print_head "install maven"
-yum install maven -y &>>/tmp/$log_file
+yum install maven -y &>>$log_file
 func_stat_check $?
 
 func_app_prereq
 func_print_head "download maven dependencies"
-mvn clean package &>>/tmp/$log_file
+mvn clean package &>>$log_file
 func_stat_check $?
 
-mv target/${component}-1.0.jar ${component}.jar &>>/tmp/$log_file
-func_schema_setup
+mv target/${component}-1.0.jar ${component}.jar &>>$log_file
 func_systemd_setup
 
 }
