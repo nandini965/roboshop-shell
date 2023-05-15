@@ -43,6 +43,7 @@ func_stat_check $?
  }
  func_app_prereq() {
  func_print_head "add application user"
+if [ $? -ne 0 ]; then
  useradd ${app_user} &>>$log_file
  func_stat_check $?
 
