@@ -132,7 +132,6 @@ func_python() {
   func_print_head "install app requirements"
   pip3.6 install -r requirements.txt &>>$log_file
   func_stat_check $?
-
   func_print_head "update passwords in system service file"
   sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|" ${script_path}/${component}.service &>>$log_file
   func_stat_check $?
@@ -157,10 +156,9 @@ func_erlang() {
   yum install ${component}-server -y &>>$log_file
    func_stat_check $?
 
-  func_systemd_setup
-
-  func_print_head "useradd"
-  componentctl add_user ${app_user} ${rabbitmq_appuser_password} &>>$log_file
-  componentctl set_permissions -p / ${app user} ".*" ".*" ".*" &>>$log_file
+  func_print_head "update passwords in system service file"
+  componentctl add_user roboshop ${rabbitmq_appuser_password} &>>$log_file
+  componentctl set_permissions -p / Roboshop ".*" ".*" ".*" &>>$log_file
  func_stat_check $?
- }
+ func_systemd_setup
+  }
