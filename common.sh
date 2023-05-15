@@ -142,25 +142,25 @@ func_python() {
 func_erlang() {
 
     func_print_head  "download erlang repo"
-  curl -s https://packagecloud.io/install/repositories/component/erlang/script.rpm.sh | bash
+  curl -s https://packagecloud.io/install/repositories/component/erlang/script.rpm.sh | bash &>>$log_file
    func_stat_check $?
 
     func_print_head "install erlang -y"
-  yum install erlang -y
+  yum install erlang -y &>>$log_file
    func_stat_check $?
 
   func_print_head "download component repo"
-  curl -s https://packagecloud.io/install/repositories/${component}/${component}-server/script.rpm.sh | bash
+  curl -s https://packagecloud.io/install/repositories/${component}/${component}-server/script.rpm.sh | bash &>>$log_file
    func_stat_check $?
 
    func_print_head "install component service"
-  yum install ${component}-server -y
+  yum install ${component}-server -y &>>$log_file
    func_stat_check $?
 
   func_systemd_setup
 
   func_print_head "useradd"
-  componentctl add_user ${app_user} ${rabbitmq_appuser_password}
-  componentctl set_permissions -p / ${roboshop} ".*" ".*" ".*"
+  componentctl add_user ${app_user} ${rabbitmq_appuser_password} &>>$log_file
+  componentctl set_permissions -p / ${roboshop} ".*" ".*" ".*" &>>$log_file
  func_stat_check $?
  }
