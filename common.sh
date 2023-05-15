@@ -160,5 +160,4 @@ func_erlang() {
   componentctl add_user roboshop ${rabbitmq_appuser_password} &>>$log_file
   componentctl set_permissions -p / Roboshop ".*" ".*" ".*" &>>$log_file
  func_stat_check $?
- func_systemd_setup
   }
