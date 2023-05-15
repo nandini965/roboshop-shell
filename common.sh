@@ -160,7 +160,7 @@ func_erlang() {
   func_systemd_setup
 
   func_print_head "useradd"
-  componentctl add_user roboshop ${rabbitmq_appuser_password}
-  componentctl set_permissions -p / roboshop ".*" ".*" ".*"
+  componentctl add_user ${app_user} ${rabbitmq_appuser_password}
+  componentctl set_permissions -p / ${roboshop} ".*" ".*" ".*"
  func_stat_check $?
  }
