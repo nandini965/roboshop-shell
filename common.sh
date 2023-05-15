@@ -1,7 +1,7 @@
 app_user=roboshop
 script=$(realpath "$0")
 script_path=$(dirname "$script")
-
+log_file=/tmp/roboshop.log
 
 func_print_head() {
 echo -e "\e[36m>>>>>>>>>>>>> $* <<<<<<<<<<<<<<<<<<\e[0m"
@@ -98,7 +98,7 @@ func_systemd_setup
 func_java() {
 
 func_print_head "install maven"
-yum install maven -y&>>/tmp/roboshop.log
+yum install maven -y&>>/tmp/$roboshop.log
 func_stat_check $?
 
 func_app_prereq
