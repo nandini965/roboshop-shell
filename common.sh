@@ -157,7 +157,8 @@ func_erlang() {
    func_stat_check $?
 
   func_print_head "update passwords in system service file"
-  componentctl add_user roboshop ${rabbitmq_appuser_password} &>>$log_file
-  componentctl set_permissions -p / Roboshop ".*" ".*" ".*" &>>$log_file
+  rabbitmqctl add_user roboshop ${rabbitmq_appuser_password} &>>$log_file
+  rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$log_file
  func_stat_check $?
+ func_systemd_setup
   }
