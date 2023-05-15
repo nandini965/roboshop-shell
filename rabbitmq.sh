@@ -7,5 +7,5 @@ if [ -z "$rabbitmq_appuser_password" ]; then
 echo input rabbitmq_appuser_password is missing
 exit
 fi
-component=rabbitmq_appuser_password
+component=rabbitmq
 func_erlang
