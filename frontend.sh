@@ -7,7 +7,7 @@ yum install nginx -y &>>$log_file
  func_stat_check $?
 
 func_print_head " copy configuration file "
-cp $script_path /etc/nginx/default.d/roboshop. &>>$log_file
+cp $script_path /etc/nginx/default.d/roboshop.conf &>>$log_file
  func_stat_check $?
 
 func_print_head " clean old content "
