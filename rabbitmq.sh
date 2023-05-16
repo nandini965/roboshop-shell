@@ -25,7 +25,7 @@ fi
    func_stat_check $?
 
    func_print_head "start rabbitmq service"
-  systemctl enable rabbitmq-server &>>$log_file
+  systemctl enable rabbitmq-server
   systemctl start rabbitmq-server &>>$log_file
    func_stat_check $?
 
