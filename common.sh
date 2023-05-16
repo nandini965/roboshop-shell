@@ -24,7 +24,7 @@ cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
 func_stat_check $?
 
 func_print_head "install mongodb client"
- yum install mongodb-org-shell - &>>$log_file
+ yum install mongodb-org-shell -y  &>>$log_file
  func_stat_check $?
 
 func_print_head "load schema"
