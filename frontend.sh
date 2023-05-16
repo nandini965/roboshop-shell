@@ -26,5 +26,6 @@ unzip /tmp/frontend.zip &>>$log_file
  func_stat_check $?
 
 func_print_head "start frontend service"
-systemctl restart nginx
+
 systemctl enable nginx
+systemctl restart nginx
