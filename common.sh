@@ -28,7 +28,7 @@ func_print_head "install mongodb client"
  func_stat_check $?
 
 func_print_head "load schema"
- mongo --host mongodb_dev.rdevopsb72.store </app/schema/${component}.js &>>$log_file
+ mongo --host mongodb-dev.rdevopsb72.store </app/schema/${component}.js &>>$log_file
 func_stat_check $?
 fi
  if [ "$schema_setup" == "mysql" ]; then
