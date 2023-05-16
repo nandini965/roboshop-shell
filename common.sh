@@ -93,9 +93,9 @@ func_print_head "install nodejs dependencies"
 npm install &>>$log_file
 func_stat_check $?
 
-func_schema_setup
-func_systemd_setup
 
+func_systemd_setup
+func_schema_setup
 
 
 }
