@@ -25,14 +25,15 @@ fi
    func_stat_check $?
 
 
-  func_print_head "user add passwords"
-  rabbitmqctl add_user roboshop "${rabbitmq_appuser_password}" &>>$log_file
-  rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"  &>>$log_file
- func_stat_check $?
-
   func_print_head " start rabbitmq service "
    systemctl enable rabbitmq-server &>>$log_file
    systemctl start rabbitmq-server &>>$log_file
     func_stat_check $?
+
+  func_print_head "user add passwords"
+  rabbitmqctl add_user roboshop " ${rabbitmq_appuser_password} " &>>$log_file
+  rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"  &>>$log_file
+ func_stat_check $?
+
 
 
