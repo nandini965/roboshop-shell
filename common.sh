@@ -43,7 +43,7 @@ func_stat_check $?
  }
  func_app_prereq() {
  func_print_head "add application user"
- id ${app_user} &>>/tmp/roboshop.log
+ id roboshop ${app_user} &>>/tmp/roboshop.log
 if [ $? -ne 0 ]; then
  useradd ${app_user} &>>/tmp/roboshop.log
  fi
