@@ -9,7 +9,7 @@ exit
 fi
 
    func_print_head  " download erlang repo "
-  curl -s https://packagecloud.io/install/repositories/component/erlang/script.rpm.sh | bash &>>$log_file
+  curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash &>>$log_file
    func_stat_check $?
 
     func_print_head " install erlang -y "
@@ -21,7 +21,7 @@ fi
    func_stat_check $?
 
    func_print_head " install rabbitmq service "
-  yum install rabbitmq-server -y &>>$log_file
+  yum install rabbitmq-server -y  &>>$log_file
    func_stat_check $?
 
 
