@@ -138,27 +138,18 @@ func_python() {
  func_systemd_setup
 
 }
-func_erlang() {
+func_golang() {
+  func_print_head "install golang -y"
+yum install golang -y &>>$log_file
+func_stat_check $?
 
-    func_print_head  "download erlang repo"
-  curl -s https://packagecloud.io/install/repositories/component/erlang/script.rpm.sh | bash &>>$log_file
-   func_stat_check $?
+func_app_prereq
 
-    func_print_head "install erlang -y"
-  yum install erlang -y &>>$log_file
-   func_stat_check $?
+go mod init dispatch &>>$log_file
+go get &>>$log_file
+go build &>>$log_file
+func_stat_check $?
 
-  func_print_head "download component repo"
-  curl -s https://packagecloud.io/install/repositories/${component}/${component}-server/script.rpm.sh | bash &>>$log_file
-   func_stat_check $?
-
-   func_print_head "install component service"
-  yum install ${component}-server -y &>>$log_file
-   func_stat_check $?
-
-  func_print_head "update passwords in system service file"
-  rabbitmqctl add_user roboshop ${rabbitmq_appuser_password} &>>$log_file
-  rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$log_file
- func_stat_check $?
- func_systemd_setup
-  }
+func_systemd_setup
+func_stat_check $? &>>$log_file
+}

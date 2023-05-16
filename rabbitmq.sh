@@ -7,5 +7,30 @@ if [ -z "$rabbitmq_appuser_password" ]; then
 echo input rabbitmq_appuser_password is missing
 exit
 fi
-component=rabbitmq
-func_erlang
+
+   func_print_head  "download erlang repo"
+  curl -s https://packagecloud.io/install/repositories/component/erlang/script.rpm.sh | bash &>>$log_file
+   func_stat_check $?
+
+    func_print_head "install erlang -y"
+  yum install erlang -y &>>$log_file
+   func_stat_check $?
+
+  func_print_head "download component repo"
+  curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash &>>$log_file
+   func_stat_check $?
+
+   func_print_head "install component service"
+  yum install rabbitmq-server -y &>>$log_file
+   func_stat_check $?
+
+   func_print_head "start rabbitmq service"
+  systemctl enable rabbitmq-server &>>$log_file
+  systemctl start rabbitmq-server &>>$log_file
+   func_stat_check $?
+
+  func_print_head "user add passwords"
+  rabbitmqctl add_user roboshop ${rabbitmq_appuser_password} &>>$log_file
+  rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$log_file
+ func_stat_check $?
+
