@@ -12,17 +12,14 @@ fi
   curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash &>>$log_file
    func_stat_check $?
 
-    func_print_head " install erlang -y "
+    func_print_head " download rabbitmq repo "
+     curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash &>>$log_file
+      func_stat_check $?
+
+    func_print_head " install erlang & rabbitmq "
   yum install erlang -y &>>$log_file
-   func_stat_check $?
-
-  func_print_head " download rabbitmq repo "
-  curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash &>>$log_file
-   func_stat_check $?
-
-   func_print_head " install rabbitmq service "
   yum install rabbitmq-server -y  &>>$log_file
-   func_stat_check $?
+ func_stat_check $?
 
 
   func_print_head " start rabbitmq service "
