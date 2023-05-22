@@ -17,8 +17,8 @@ fi
       func_stat_check $?
 
     func_print_head " install erlang & rabbitmq "
-     yum install erlang -y
-   yum install rabbitmq-server -y
+     yum install erlang -y &>>$log_file
+   yum install rabbitmq-server -y &>>$log_file
  func_stat_check $?
 
   func_print_head "start rabbitmq service"
