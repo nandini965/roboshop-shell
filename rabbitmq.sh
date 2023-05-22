@@ -20,7 +20,6 @@ fi
   yum install erlang -y rabbitmq-server -y &>>$log_file
  func_stat_check $?
 
-
   func_print_head "start rabbitmq service"
    systemctl enable rabbitmq-server &>>$log_file
    systemctl start rabbitmq-server &>>$log_file

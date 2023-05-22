@@ -120,7 +120,7 @@ func_systemd_setup
 
 func_python() {
    func_print_head "install python3"
-  yum install python36 gcc python3-devel -y &>>log_file
+  yum install python36 gcc python3-devel -y &>>$log_file
   func_stat_check $?
 
   func_app_prereq
