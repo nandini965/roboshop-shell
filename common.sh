@@ -34,7 +34,7 @@ fi
  if [ "$schema_setup" == "mysql" ]; then
  func_print_head " install mysql client "
 yum install mysql -y &>>$log_file
-func_stat_check $? &>>$log_file
+func_stat_check $?
 
  func_print_head "load schema"
 mysql -h mysql-dev.rdevopsb72.store -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>$log_file
