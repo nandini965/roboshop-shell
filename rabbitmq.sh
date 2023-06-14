@@ -5,7 +5,7 @@ rabbitmq_appuser_password=$1
 
 if [ -z "$rabbitmq_appuser_password" ]; then
 echo input rabbitmq_appuser_password is missing
-exit
+exit 1
 fi
 
    func_print_head  " download erlang repo "
