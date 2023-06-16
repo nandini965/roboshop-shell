@@ -20,7 +20,7 @@ fi
       yum install rabbitmq-server -y &>>$log_file
  func_stat_check $?
 
-  func_print_head "start rabbitmq service"
+  func_print_head "restart rabbitmq service"
    systemctl enable rabbitmq-server  &>>$log_file
    systemctl restart rabbitmq-server &>>$log_file
     func_stat_check $?
