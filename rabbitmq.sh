@@ -22,7 +22,7 @@ fi
 
   func_print_head "start rabbitmq service"
    systemctl enable rabbitmq-server  &>>$log_file
-   systemctl restart rabbitmq-server &>>$log_file
+   systemctl start rabbitmq-server &>>$log_file
     func_stat_check $?
 
   func_print_head "add application passwords in rabbitmq"
