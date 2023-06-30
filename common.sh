@@ -78,6 +78,7 @@ if [ $? -ne 0 ]; then
  func_stat_check $?
 }
 
+
  func_nodejs() {
 func_print_head "configuring nodejs"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$log_file
