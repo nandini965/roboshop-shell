@@ -136,19 +136,19 @@ func_python() {
  func_systemd_setup
 }
 
-func_golang() {
-func_print_head "install golang"
-yum install golang -y &>>$log_file
-func_stat_check $?
+#func_golang() {
+#func_print_head "install golang"
+#yum install golang -y &>>$log_file
+#func_stat_check $?
 
-func_app_prereq
+#func_app_prereq
 
-go mod init dispatch &>>$log_file
-go get &>>$log_file
-go build &>>$log_file
-func_stat_check $?
+#go mod init dispatch &>>$log_file
+#go get &>>$log_file
+#go build &>>$log_file
+#func_stat_check $?
 
-func_systemd_setup
-func_stat_check $? &>>$log_file
+#func_systemd_setup
+#func_stat_check $? &>>$log_file
 
-}
+#}
