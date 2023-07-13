@@ -139,4 +139,3 @@ func_python() {
  func_systemd_setup
  func_stat_check $?
  }
-
