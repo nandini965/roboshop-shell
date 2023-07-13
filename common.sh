@@ -101,7 +101,7 @@ func_schema_setup
 
 }
 
-func_java() {
+ func_java() {
 
 func_print_head "install maven"
 yum install maven -y &>>$log_file
