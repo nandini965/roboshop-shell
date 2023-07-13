@@ -25,7 +25,7 @@ fi
     func_stat_check $?
 
   func_print_head "add application passwords in rabbitmq"
-  rabbitmqctl add_user roboshop " ${rabbitmq_appuser_password} "  &>>$log_file
+  rabbitmqctl add_user roboshop "${rabbitmq_appuser_password}"  &>>$log_file
   rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"  &>>$log_file
  func_stat_check $?
 
