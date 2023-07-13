@@ -137,7 +137,7 @@ func_python() {
 }
 
 func_golang() {
-func_print_head " install golang -y "
+func_print_head "install golang"
 yum install golang -y &>>$log_file
 func_stat_check $?
 
@@ -150,4 +150,5 @@ func_stat_check $?
 
 func_systemd_setup
 func_stat_check $? &>>$log_file
+
 }
