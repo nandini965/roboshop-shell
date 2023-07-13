@@ -6,6 +6,6 @@ if [ -z "$mysql_root_password" ]; then
   echo input mysql_root_password is missing
   exit 1
 fi
-component="shipping"
-schema_setup=mysql
-func_java
+ component="shipping"
+ schema_setup=mysql
+ func_java
