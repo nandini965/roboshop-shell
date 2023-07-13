@@ -97,7 +97,7 @@ func_stat_check $?
 
 func_systemd_setup
 func_schema_setup
-
+func_stat_check $?
 
 }
 
@@ -113,8 +113,12 @@ mvn clean package &>>$log_file
 func_stat_check $?
 
 mv target/${component}-1.0.jar ${component}.jar &>>$log_file
+
 func_schema_setup
+func_stat_check $?
+
 func_systemd_setup
+func_stat_check $?
 }
 
 
