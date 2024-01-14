@@ -37,7 +37,7 @@ yum install mysql -y &>>$log_file
 func_stat_check $?
 
  func_print_head "load schema"
-mysql -h mysql-dev.rdevopsb72.store -uroot -pRoboShop@1 < /app/schema/shipping.sql &>>$log_file
+mysql -h mysql-dev.rdevopsb72.store -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>$log_file
 func_stat_check $?
 fi
  }
